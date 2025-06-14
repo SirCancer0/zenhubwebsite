@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/loader",
-      "destination": "/loader.html"
+      "destination": "/loader"
     }
   ]
 }
