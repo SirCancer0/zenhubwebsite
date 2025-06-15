@@ -395,10 +395,14 @@
             transform: translateX(100%);
             transition: transform 0.3s ease;
             z-index: 10001;
+            opacity: 0;
+            visibility: hidden;
         }
 
         .success-message.show {
             transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
         }
 
         @media (max-width: 768px) {
