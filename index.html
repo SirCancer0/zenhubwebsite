@@ -286,8 +286,8 @@
             margin-bottom: 2rem;
         }
 
-        /* Partners Section Styles */
-        .partners-grid {
+        /* Partners and Executors Icons Styles */
+        .partners-grid, .executors-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 2rem;
@@ -297,7 +297,7 @@
             margin-right: auto;
         }
 
-        .partner-item {
+        .partner-item, .executor-card {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -305,11 +305,11 @@
             transition: transform 0.3s ease;
         }
 
-        .partner-item:hover {
+        .partner-item:hover, .executor-card:hover {
             transform: translateY(-10px);
         }
 
-        .partner-icon {
+        .partner-icon, .executor-icon {
             width: 80px;
             height: 80px;
             border-radius: 20px;
@@ -325,7 +325,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        .partner-icon::before {
+        .partner-icon::before, .executor-icon::before {
             content: '';
             position: absolute;
             top: 0;
@@ -336,7 +336,7 @@
             transition: left 0.6s ease;
         }
 
-        .partner-item:hover .partner-icon::before {
+        .partner-item:hover .partner-icon::before, .executor-card:hover .executor-icon::before {
             left: 100%;
         }
 
@@ -392,6 +392,7 @@
             background-image: url('https://cdn.discordapp.com/icons/1247576203502682163/97f4055050ac84a34a5a6965dc6489da.webp');
             animation: pulse-blue 3s ease-in-out infinite 3s;
         }
+
         @keyframes pulse-purple {
             0%, 100% { 
                 transform: scale(1);
@@ -563,6 +564,158 @@
             visibility: visible;
         }
 
+        /* Executors Grid Styles */
+        .executors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .executor-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .executor-card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .executor-card:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .executor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .executor-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #a855f7, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .executor-status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .updated {
+            background-color: #32cd32;
+        }
+
+        .not-updated {
+            background-color: #ff4d4d;
+        }
+
+        .executor-details {
+            display: none;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .executor-card.active .executor-details {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .executor-card.active {
+            animation: bounce 0.3s ease;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .executor-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1rem;
+        }
+
+        .executor-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .executor-actions .discord-btn,
+        .executor-actions .website-btn {
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
+        }
+
+        .website-btn {
+            background: linear-gradient(45deg, #a855f7, #c084fc);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .website-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .website-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .website-btn:hover::before {
+            left: 100%;
+        }
+
         @media (max-width: 768px) {
             .title { font-size: 3rem; }
             .subtitle { font-size: 1.1rem; }
@@ -571,13 +724,22 @@
             .content-section h2 { font-size: 2rem; }
             .content-section p { font-size: 1.1rem; }
             .loader-buttons { flex-direction: column; }
-            .partners-grid { 
+            .partners-grid, .executors-grid { 
                 grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 1.5rem;
             }
-            .partner-icon {
+            .partner-icon, .executor-icon {
                 width: 60px;
                 height: 60px;
+            }
+            .executors-grid {
+                grid-template-columns: 1fr;
+            }
+            .executor-card {
+                padding: 1rem;
+            }
+            .executor-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -633,7 +795,6 @@
                 <p class="subtitle">Join our vibrant community and connect with like-minded individuals in a space designed for growth, creativity, and meaningful connections.</p>
                 
                 <div class="button-container">
-                    <!-- Fixed Discord Button -->
                     <a href="https://discord.gg/zen-hub-official-1189265387217490051" class="discord-btn" target="_blank">
                         <svg class="discord-icon" viewBox="0 0 24 24">
                             <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
@@ -672,17 +833,14 @@
             <p>Zen Hub is a well-established and highly trusted platform in the Roblox community. We collaborate with leading platforms and services to provide you with the best possible experience and maintain our reputation as one of the most reliable script hubs available.</p>
             
             <div class="partners-grid">
-    <div class="partner-item" onclick="window.open('https://pornhub.com', '_blank')">
-        <div class="partner-icon ronin-icon"></div>
-        <span class="partner-name">Ronin</span>
-    </div>
-</div>
-                
+                <div class="partner-item" onclick="window.open('https://pornhub.com', '_blank')">
+                    <div class="partner-icon ronin-icon"></div>
+                    <span class="partner-name">Ronin</span>
+                </div>
                 <div class="partner-item">
                     <div class="partner-icon trigon-icon"></div>
                     <span class="partner-name">Trigon</span>
                 </div>
-                
                 <div class="partner-item">
                     <div class="partner-icon ugphone-icon"></div>
                     <span class="partner-name">Ugphone</span>
@@ -696,61 +854,217 @@
             <h2>Executors Supported</h2>
             <p>Zen Hub works with most modern executors, but we do not guarantee your specific executor will be fully supported. Here are some of the executors our community has reported success with:</p>
             
-            <div class="partners-grid">
-                <div class="partner-item">
-                    <div class="partner-icon swift-icon"></div>
-                    <span class="partner-name">Swift</span>
+            <div class="executors-grid">
+                <div class="executor-card" data-executor="swift">
+                    <div class="executor-icon swift-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Swift</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.49 weekly</span>
+                            <span>Last Updated: 06/15/2025 at 11:04 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon bunni-icon"></div>
-                    <span class="partner-name">Bunni.lol</span>
+                <div class="executor-card" data-executor="bunni">
+                    <div class="executor-icon bunni-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Bunni.lol</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v2.9.2a</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $7.49 weekly</span>
+                            <span>Last Updated: 05/29/2025 at 7:30 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon trigon-icon"></div>
-                    <span class="partner-name">Trigon</span>
+                <div class="executor-card" data-executor="trigon">
+                    <div class="executor-icon trigon-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Trigon</div>
+                        <div class="executor-status not-updated">Not Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.74</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.99 weekly</span>
+                            <span>Last Updated: 05/23/2025 at 3:46 AM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon wave-icon"></div>
-                    <span class="partner-name">Wave</span>
+                <div class="executor-card" data-executor="wave">
+                    <div class="executor-icon wave-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Wave</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v2.9.2a</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $7.49 weekly</span>
+                            <span>Last Updated: 05/29/2025 at 7:30 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon zenith-icon"></div>
-                    <span class="partner-name">Zenith</span>
+                <div class="executor-card" data-executor="zenith">
+                    <div class="executor-icon zenith-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Zenith</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.3</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.49 weekly</span>
+                            <span>Last Updated: 06/15/2025 at 11:04 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon volcano-icon"></div>
-                    <span class="partner-name">Volcano</span>
+                <div class="executor-card" data-executor="volcano">
+                    <div class="executor-icon volcano-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Volcano</div>
+                        <div class="executor-status not-updated">Not Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.74</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.99 weekly</span>
+                            <span>Last Updated: 05/23/2025 at 3:46 AM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon awp-icon"></div>
-                    <span class="partner-name">AWP</span>
+                <div class="executor-card" data-executor="awp">
+                    <div class="executor-icon awp-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">AWP</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v2.9.2a</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $7.49 weekly</span>
+                            <span>Last Updated: 05/29/2025 at 7:30 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="partner-item">
-                    <div class="partner-icon mobile-icon"></div>
-                    <span class="partner-name">Trigon Mobile</span>
+                <div class="executor-card" data-executor="mobile">
+                    <div class="executor-icon mobile-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Trigon Mobile</div>
+                        <div class="executor-status not-updated">Not Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.74</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.99 weekly</span>
+                            <span>Last Updated: 05/23/2025 at 3:46 AM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                
-            <div class="partner-item">
-            <div class="partner-icon wind-icon"></div>
-                    <span class="partner-name">Wind Pc</span>
+                <div class="executor-card" data-executor="wind">
+                    <div class="executor-icon wind-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Wind Pc</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.3</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.49 weekly</span>
+                            <span>Last Updated: 06/15/2025 at 11:04 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="partner-item">
-            <div class="partner-icon ryxz-icon"></div>
-                    <span class="partner-name">Ryxz Pc</span>
+                <div class="executor-card" data-executor="ryxz">
+                    <div class="executor-icon ryxz-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Ryxz Pc</div>
+                        <div class="executor-status not-updated">Not Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v1.0.74</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $6.99 weekly</span>
+                            <span>Last Updated: 05/23/2025 at 3:46 AM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="partner-item">
-            <div class="partner-icon salad-icon"></div>
-                    <span class="partner-name">Salad Pc</span>
-
+                <div class="executor-card" data-executor="salad">
+                    <div class="executor-icon salad-icon"></div>
+                    <div class="executor-header">
+                        <div class="executor-title">Salad Pc</div>
+                        <div class="executor-status updated">Updated</div>
+                    </div>
+                    <div class="executor-details">
+                        <div class="executor-info">
+                            <span>Version: v2.9.2a</span>
+                            <span>Type: sUNC</span>
+                            <span>Price: $7.49 weekly</span>
+                            <span>Last Updated: 05/29/2025 at 7:30 PM UTC</span>
+                        </div>
+                        <div class="executor-actions">
+                            <a href="#" class="discord-btn" target="_blank">Discord Server</a>
+                            <a href="#" class="website-btn" target="_blank">Website</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
             <p class="disclaimer">* We do not guarantee your executor will support Zen Hub. Compatibility may vary.</p>
         </div>
     </section>
@@ -775,11 +1089,9 @@
         function copyLoader() {
             const loaderText = document.getElementById('loaderText').textContent;
             
-            // Use the Clipboard API
             navigator.clipboard.writeText(loaderText).then(function() {
                 showSuccessMessage();
             }).catch(function(err) {
-                // Fallback for older browsers
                 const textArea = document.createElement('textarea');
                 textArea.value = loaderText;
                 document.body.appendChild(textArea);
@@ -811,6 +1123,27 @@
             if (e.key === 'Escape') {
                 closeLoaderModal();
             }
+        });
+
+        // Executor card toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const executorCards = document.querySelectorAll('.executor-card');
+
+            executorCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const isActive = this.classList.contains('active');
+                    executorCards.forEach(c => c.classList.remove('active'));
+                    if (!isActive) {
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.executor-card')) {
+                    executorCards.forEach(card => card.classList.remove('active'));
+                }
+            });
         });
     </script>
 </body>
